@@ -43,11 +43,11 @@ export default {
         }else{
           this.alert = {show:true, background:'bg-green-500', message:res.message}
           this.setToken(res.token);
+          this.$router.push('main');
         }
         setTimeout(() => {
           this.alert = {show:false, background:null, message:null};
-        }, 2500);
-        this.$router.push('main');
+        }, 2500);       
       })
       return true;
     },
