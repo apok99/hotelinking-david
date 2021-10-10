@@ -36,6 +36,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Coupon');
     }
 
+    /**
+     * 
+     *  Funcion que recorre cada cupon y lo traduce.
+     * 
+     */
+
     public function getCoupons(){
         if ($this->coupons !=null) {
             return $this->coupons->map(function($coupon){

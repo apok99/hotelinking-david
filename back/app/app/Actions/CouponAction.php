@@ -15,7 +15,7 @@ class CouponAction{
      * 
      */
     public function execute(\App\Models\User $user) : Array {
-        return ($this->couponRepository->create($user,$this->validateCode()))->createResponseArray();
+        return ($this->couponRepository->create($user, $this->validateCode()))->createResponseArray();
     }
 
     /**
@@ -52,7 +52,14 @@ class CouponAction{
         return 'HLW' . mt_rand(1,9999); 
     }
 
-    public function useCoupon($id, $user){
+
+    /**
+     * 
+     * Funcion que usa el cupon, primero comprueba que el cupon sea nuestro y si ya esta usado.
+     * 
+     */
+
+    public function useCoupon($id, $user) : Array{
         
         $coupon = $this->isMyCoupon($id, $user);
 

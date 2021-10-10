@@ -13,16 +13,17 @@ class CouponController extends Controller
         $this->user = auth()->user();
     } 
 
+    //Busca en el usuario que tiene sesion iniciada y saca todos sus cupones.
     public function index(Request $request){
-        return response()->json(['coupons' => $this->user->getCoupons()], 200);
+        return response()->json(['coupons' => $this->user->getCoupons(), 'error' => false], 200);
     }
-
+    //LLama al action de crear cupon, se pasa el usuario para validar.
     public function create(CouponAction $couponAction){
-        return response()->json(['coupon' => $couponAction->execute($this->user)]);
+        return response()->json(['coupon' => $couponAction->execute($this->user), 'error' => false], 200);
     }
-
-    public function use(\App\Http\Requests\UseCoupon $request, CouponAction $couponAction ){
-        return response()->json($couponAction->useCoupon($request->id, $this->user));
+    //LLama al action de usar cupon, se pasa el usuario para validar.
+    public function use(\App\Http\Requests\UseCoupon $request, CouponAction $couponAction){
+        return response()->json(['coupon' => $couponAction->useCoupon($request->id, $this->user), 'error' => false], 200);
     }
 
 }

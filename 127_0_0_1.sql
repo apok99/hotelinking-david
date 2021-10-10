@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2021 a las 12:02:38
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
+-- Tiempo de generación: 10-10-2021 a las 12:20:12
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hotelinking`
 --
+CREATE DATABASE IF NOT EXISTS `hotelinking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `hotelinking`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +34,7 @@ CREATE TABLE `coupons` (
   `code` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `used` tinyint(1) NOT NULL DEFAULT 0,
-  `discount` decimal(3,2) DEFAULT NULL,
+  `discount` decimal(5,2) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -42,12 +44,13 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `code`, `user_id`, `used`, `discount`, `created_at`, `updated_at`) VALUES
-(1, '1', 1, 1, '9.99', '2021-10-07 13:45:53', '2021-10-07 14:18:36'),
-(4, 'HLW4485', 1, 1, '9.99', '2021-10-07 13:47:56', '2021-10-07 14:21:28'),
-(5, 'HLW5700', 1, 1, '9.99', '2021-10-07 13:48:00', '2021-10-07 14:29:14'),
-(6, 'HLW2703', 1, 1, '9.99', '2021-10-07 13:48:02', '2021-10-07 14:47:46'),
-(7, 'HLW3217', 1, 0, '9.99', '2021-10-07 13:48:03', '2021-10-07 13:48:03'),
-(8, 'HLW7027', 1, 0, '9.99', '2021-10-07 13:48:05', '2021-10-07 13:48:05');
+(28, 'HLW2517', 1, 1, '49.99', '2021-10-10 10:13:38', '2021-10-10 10:17:27'),
+(29, 'HLW1462', 1, 0, '29.99', '2021-10-10 10:15:27', '2021-10-10 10:15:27'),
+(30, 'HLW8500', 1, 1, '9.99', '2021-10-10 10:15:39', '2021-10-10 10:15:39'),
+(31, 'HLW3688', 1, 1, '50.00', '2021-10-10 10:17:13', '2021-10-10 10:17:22'),
+(32, 'HLW5214', 1, 0, '9.99', '2021-10-10 10:17:14', '2021-10-10 10:17:14'),
+(33, 'HLW4707', 1, 0, '2.16', '2021-10-10 10:17:14', '2021-10-10 10:17:14'),
+(34, 'HLW612', 1, 0, '24.00', '2021-10-10 10:17:25', '2021-10-10 10:17:25');
 
 -- --------------------------------------------------------
 
@@ -96,7 +99,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

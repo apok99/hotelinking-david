@@ -4,22 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use JWTAuth;
 
 class AuthController extends Controller
 {
    
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api', ['except' => ['login']]);
-    // }
+    public function __construct(){
+        //Hacemos que el token caduque a las 8h
+        JWTAuth::factory()->setTTL(480);
+    }
 
-    //Requiere los parametros de login y los comprueba. Crea una sesion  a traves de guard de auth de laravel.
+    //Requiere los parametros de login y los comprueba. Crea una sesion a traves de guard de auth de laravel.
     public function login()
     {
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => true,  'message' => 'Incorrect username or password.'], 200);
+            return response()->json(['error' => true,  'message' => 'Incorrect email or password.'], 200);
         }
 
         return $this->respondWithToken($token);

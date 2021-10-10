@@ -13,7 +13,10 @@ use App\Http\Controllers\CouponController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/coupons/get', [CouponController::class, 'index'])->name('coupons/get');
-Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons/create');
-Route::post('/coupons/use', [CouponController::class, 'use'])->name('coupons/use');
+Route::middleware('jwtAuth')->group(function () {
+    Route::get('/coupons/get', [CouponController::class, 'index'])->name('coupons/get');
+    Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons/create');
+    Route::post('/coupons/use', [CouponController::class, 'use'])->name('coupons/use');
+});

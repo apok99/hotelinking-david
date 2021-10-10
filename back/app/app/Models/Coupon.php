@@ -23,16 +23,19 @@ class Coupon extends Model
     }
 
     public function getDiscount(){
-        if (!$this->discount) {
+        if ($this->discount) {
             return number_format($this->discount, 2);
         }else{
             return null;
         }
     }
 
+    
+
     public function use(){
         $this->used = true;
         $this->save();
+        return $this;
     }
 
     /**
